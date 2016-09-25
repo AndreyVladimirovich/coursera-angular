@@ -27,14 +27,8 @@ function AlreadyBoughtShoppingController(ShoppingListCheckOffService) {
 }
 
 function ShoppingListCheckOffService() {
-  var toBuyList = [];
+  var toBuyList = InitializeBuyList();
   var bougthList = [];
-
-  var item = {
-      name: 'itemName',
-      quantity: 2
-    };
-    toBuyList.push(item);
 
   this.getBoughtShoppingList = function () {
     return bougthList;
@@ -49,7 +43,30 @@ function ShoppingListCheckOffService() {
     toBuyList.splice(itemIndex, 1);
   };
 
+  function InitializeBuyList() {
+     return [
+       {
+         name: 'Milk',
+         quantity: 2
+       },
+       {
+         name: 'Eggs',
+         quantity: 10
+       },
+       {
+         name: 'Tomatos',
+         quantity: 3
+       },
+       {
+         name: 'Cheese',
+         quantity: .5
+       },
+       {
+         name: 'Cookies',
+         quantity: 5
+       },
+     ]
+  }
 }
-
 
 })();

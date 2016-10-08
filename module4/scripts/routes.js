@@ -22,30 +22,26 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   .state('categories', {
      url: '/categories',
      templateUrl: 'view/template/main-categories-template.html',
-     controller: 'categoriesController as catCtrl',
+     controller: 'CategoriesController as catCtrl',
      resolve: {
-       item: ['MenuDataService',
+       categories: ['MenuDataService',
            function (MenuDataService) {
-             return MenuDataService.getAllCategories()
-               .then(function (categories) {
-                 return categories;
-               })
+             return MenuDataService.getAllCategories();
        }]
+     }
  })
  .state('items', {
-    url: '/items',
-    templateUrl: 'view/template/items-template.html',
+    url: '/items/{categoryName}',
+    templateUrl: 'view/template/main-items-template.html',
     controller: 'ItemsController as itemCtrl',
     resolve: {
-      item: ['$stateParams', 'MenuDataService',
+      items: ['$stateParams', 'MenuDataService',
           function ($stateParams, MenuDataService) {
-            return MenuDataService.getItemsForCategory()
-              .then(function (items) {
-                return items;
-              })
+            return MenuDataService.getItemsForCategory($stateParams.categoryName)
       }]
     }
 });
+
 }
 
 })();

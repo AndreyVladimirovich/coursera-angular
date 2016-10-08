@@ -1,3 +1,7 @@
-<div>
-  Welcome to our Restaurant
-</div>
+<div>{{ category }}</div>
+<ol>
+  <li ng-repeat="item in $ctrl.items">
+    <div><b>{{ item.name }}</b>  =>   Price: {{ item.price_small }} / {{ item.price_large }}</div>
+    <div><i>Description:</i> {{ item.description }}</div>
+  </li>
+</ol>
